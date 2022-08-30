@@ -25,7 +25,7 @@ def rotate_file(filepadrao):
             compress_file(file)
         elif file == filepadrao + ".gz":
             os.rename(file, file + ".1")
-        elif list_name_file[2] in [str(i) for i in range(2, 8)]:
+        elif list_name_file[2] in [str(i) for i in range(2, 20)]:
             os.rename(file, list_name_file[0] + "gz" + str(int(list_name_file[2]) + 1))
         else:
             os.remove(file)
@@ -45,8 +45,8 @@ def task(value):
         value["destin"],
     ]
     command = " ".join(list_command)
-    subprocess.call(command, shell=True)
     rotate_file(log_file)
+    subprocess.call(command, shell=True)
     sema.release()
 
 
