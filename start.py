@@ -23,9 +23,9 @@ def task(value):
         value["destin"],
     ]
     command = " ".join(list_command)
-    subprocess.call(command, shell=True)
     rotate_log = RotatingFileHandler(log_file, backupCount=20)
     rotate_log.doRollover()
+    subprocess.call(command, shell=True)
     sema.release()
 
 
