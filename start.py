@@ -1,6 +1,5 @@
 import threading
 import subprocess
-from pathlib import Path
 from logging.handlers import RotatingFileHandler
 from config import rsync_bin, rsync_options, location_list
 
