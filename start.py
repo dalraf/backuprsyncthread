@@ -26,7 +26,7 @@ def rotate_file(filepadrao):
         elif file == filepadrao + ".gz":
             os.rename(file, file + ".1")
         elif list_name_file[3] in [str(i) for i in range(2, 20)]:
-            os.rename(file, list_name_file[0] + "gz" + str(int(list_name_file[2]) + 1))
+            os.rename(file, list_name_file[0] + "gz" + str(int(list_name_file[3]) + 1))
         else:
             os.remove(file)
 
