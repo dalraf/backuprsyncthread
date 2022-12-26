@@ -4,7 +4,7 @@ from logging.handlers import RotatingFileHandler
 import random
 from config import rsync_bin, rsync_options, location_list
 
-location_list = random.shuffle(location_list)
+random.shuffle(location_list)
 
 maxthreads = 3
 sema = threading.Semaphore(value=maxthreads)
