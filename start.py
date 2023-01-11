@@ -29,7 +29,10 @@ def task(value):
     command = " ".join(list_command)
     print(command)
     rotate_log = RotatingFileHandler(log_file, backupCount=20)
-    rotate_log.doRollover()
+    try:
+        rotate_log.doRollover()
+    except Exception as e:
+        print(e.args[0])
     subprocess.call(command, shell=True)
     sema.release()
 
