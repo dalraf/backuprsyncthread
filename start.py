@@ -2,6 +2,7 @@ import threading
 import subprocess
 from logging.handlers import RotatingFileHandler
 import random
+import sys
 from config import rsync_bin, rsync_options, location_list
 
 random.shuffle(location_list)
@@ -24,13 +25,18 @@ def task(value):
         value["destin"],
     ]
     command = " ".join(list_command)
+    print(command)
     rotate_log = RotatingFileHandler(log_file, backupCount=20)
     rotate_log.doRollover()
     subprocess.call(command, shell=True)
     sema.release()
 
-
-for indice, value in enumerate(location_list):
-    thread = threading.Thread(target=task, args=(value,))
-    threads.append(thread)
-    thread.start()
+if sys.argv[1]:
+    indice = int(sys.argv[1])
+    value = location_list[indice]
+    task(value)
+else:
+    for indice, value in enumerate(location_list):
+        thread = threading.Thread(target=task, args=(value,))
+        threads.append(thread)
+        thread.start()
