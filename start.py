@@ -5,7 +5,9 @@ import random
 import sys
 from config import rsync_bin, rsync_options, location_list
 
-random.shuffle(location_list)
+
+if not len(sys.argv) > 1:
+    random.shuffle(location_list)
 
 maxthreads = 3
 sema = threading.Semaphore(value=maxthreads)
