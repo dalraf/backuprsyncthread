@@ -31,7 +31,7 @@ def task(value):
     subprocess.call(command, shell=True)
     sema.release()
 
-if sys.argv[1]:
+if len(sys.argv) > 1:
     indice = int(sys.argv[1])
     value = location_list[indice]
     task(value)
