@@ -37,9 +37,13 @@ def task(value):
     sema.release()
 
 if len(sys.argv) > 1:
-    indice = int(sys.argv[1])
-    value = location_list[indice]
-    task(value)
+    if sys.argv[1] == 'list':
+        for index, item in enumerate(location_list):
+            print(index, item['nome'])
+    else:
+        indice = int(sys.argv[1])
+        value = location_list[indice]
+        task(value)
 else:
     for indice, value in enumerate(location_list):
         thread = threading.Thread(target=task, args=(value,))
